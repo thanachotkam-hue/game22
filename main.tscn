@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://e7gre1pegv33"]
+
+[ext_resource type="Script" uid="uid://doa8av76p6yjb" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ceus671b5bpxh" path="res://mob.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://bd2do3n245yyt" path="res://pngtree-world-ocean-day-undersea-light-effect-blue-minimalist-ocean-day-poster-image_788829.jpg" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://5djmp2jhrwys" path="res://player1.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ivdl6nnowci1" path="res://hud.tscn" id="5_lquwl"]
+
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 640, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720)
+}
+point_count = 11
+
+[node name="main" type="Node" unique_id=1925181493]
+script = ExtResource("1_ig7tw")
+mob_scene = ExtResource("2_0xm2m")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=765880448]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9686721, 0.9480464, 0.9960764, 1)
+
+[node name="PngtreeWorldOceanDayUnderseaLightEffectBlueMinimalistOceanDayPosterImage788829" type="Sprite2D" parent="ColorRect" unique_id=566169555]
+position = Vector2(232.75, 359.25)
+scale = Vector2(1.83829, 1.7903228)
+texture = ExtResource("3_1bvp3")
+
+[node name="MobPath" type="Path2D" parent="." unique_id=292603878]
+curve = SubResource("Curve2D_0xm2m")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=1542211331]
+position = Vector2(0, 569.4918)
+rotation = -1.5707964
+progress = 3110.5112
+
+[node name="MobTimer" type="Timer" parent="." unique_id=1541310502]
+wait_time = 0.5
+
+[node name="player" parent="." unique_id=1590034258 instance=ExtResource("3_h2yge")]
+position = Vector2(240, 320)
+
+[node name="HUD" parent="." unique_id=2086655020 instance=ExtResource("5_lquwl")]
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=398564838]
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ivdl6nnowci1"]
+
+[ext_resource type="FontFile" uid="uid://cpnuylcoc48v4" path="res://fonts/xolonium-regular.ttf" id="1_37p78"]
+[ext_resource type="Script" uid="uid://c8lgglg3o648y" path="res://hud.gd" id="1_64ctp"]
+
+[node name="HUD" type="CanvasLayer" unique_id=2086655020]
+script = ExtResource("1_64ctp")
+
+[node name="MessageLabel" type="Label" parent="." unique_id=448437735]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -320.0
+offset_right = 219.0
+offset_bottom = -278.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 30
+text = "ธนโชติ กมลเลิศ 673380630-1"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=1238760069]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
